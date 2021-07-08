@@ -8,8 +8,10 @@
 #include "EasyButton.h"
 
 void EasyButton::begin()
-{
-	pinMode(_pin, _pu_enabled ? INPUT_PULLUP : INPUT);
+{	
+	#warning Make sure your micro controller supports INPUT_PULLDOWN on the specified pin if you use it!
+	pinMode(_pin, _pin_mode);
+	
 	_current_state = _readPin();
 	if (_active_low)
 	{
